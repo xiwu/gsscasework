@@ -150,7 +150,7 @@ camel-core-2.12.0.redhat-611433.jar
 └── 2.12.0.redhat-611433
     └── camel-core-2.12.0.redhat-611433.jar
 ```    
-
+as to how to verify the patch, pls see the doc [How do i verify if my Fuse 6.0/6.1 installation had already installed any patch](https://access.redhat.com/solutions/1339163)
 
 
 
