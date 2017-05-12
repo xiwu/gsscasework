@@ -56,38 +56,41 @@ which is the same directory with the bundle
 `osgi:install mvn:org.jboss.quickstarts.fuse/beginner-camel-cbr/6.3.0.redhat-187`
 
 commands to create a profile
+```
 profile-create --parent default cosprofile
 fabric:profile-change-parents cosprofile feature-camel
 fabric:profile-edit --repository  mvn:org.jboss.quickstarts.fuse/beginner-camel-cbr/6.3.0.redhat-187/xml/features cosprofile
 fabric:profile-edit --feature testlocalrepo cosprofile
 container-create-child root testrepocon
 container-add-profile testrepocon cosprofile
+```
 
-#fabric related
+# fabric related
 shutting down a fabric
 https://access.redhat.com/documentation/en-us/red_hat_jboss_fuse/6.3/html/fabric_guide/esbruntimefabricshutdown
 
 ### repository
 By default, all the profiles inherit form the profile "default". So  you can edit the "default" profile
 edit the file
-
+```
 io.fabric8.agent through the admin console http://localhost:8181/hawtio: 
 WiKi-> Root/fabric/profiles/default->io.fabric8.agent.properties
-
+```
 
 change the property:
+```
 org.ops4j.pax.url.mvn.defaultRepositories= \
     file:${runtime.home}/${karaf.default.repository}@snapshots@id=karaf-default,\
     file:${runtime.data}/maven/upload@snapshots@id=fabric-upload,\
     file:${user.home}/.m2/repository@snapshots@id=local
-
+```
 
 modify the one 
- file:${user.home}/.m2/repository@snapshots@id=local
+ `file:${user.home}/.m2/repository@snapshots@id=local`
 
 to the real maven repository like:
 
-    file:///home/daniel/customrepository@snapshots@id=local
+    `file:///home/daniel/customrepository@snapshots@id=local`
 
 for more information about the maven repo, pls check 
 
@@ -96,6 +99,7 @@ for more information about the maven repo, pls check
 
 especially this part: 
 
+```
 org.ops4j.pax.url.mvn.settings
     Specifies a path on the file system to override the default location of the Maven settings.xml file. The Fabric8 agent resolves the location of the Maven settings.xml file in the following order:
 
@@ -106,4 +110,4 @@ org.ops4j.pax.url.mvn.settings
 
     Note
     All settings.xml files are ignored, if the org.ops4j.pax.url.mvn.repositories property is set.
-
+```
