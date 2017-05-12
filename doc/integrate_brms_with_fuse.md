@@ -1,7 +1,7 @@
+# Integrate BRMS with Fuse
 
-#Integrate BRMS with Fuse
+## Issue
 
-##Issue
 I have got troubles to deploy my service in a fabric environment. This service has components to integrate itself with JBoss BRMS 6.4.
 In the log, I see below ERROR, how to resolve the issue?
 ```
@@ -23,8 +23,8 @@ org.osgi.service.resolver.ResolutionException: Unable to resolve root: missing r
 	at java.lang.Thread.run(Thread.java:745)[:1.8.0_121]
 ```
 
-##Resolution
-###common steps
+## Resolution
+### common steps
 For the BRMS related artifacts, you need to add related repo to the fuse maven repo so that these artifacts can be downloaded. 
     https://maven.repository.redhat.com/ga
     https://maven.repository.redhat.com/earlyaccess/all
@@ -62,10 +62,10 @@ fabric:profile-edit --append --pid io.fabric8.agent/org.ops4j.pax.url.mvn.reposi
 [1]https://access.redhat.com/maven-repository
 [2]https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=jboss.fuse&version=6.2.1
 
-###standalone env
+### standalone env
 
 
-###steps
+#### steps
 
 - Before start the fuse,
 
@@ -137,8 +137,8 @@ https://access.redhat.com/jbossnetwork/restricted/softwareDetail.html?softwareId
 [2]Troubleshooting Dependencies
 https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2.1/html/Deploying_into_Apache_Karaf/ch07s04.html
 
-###fabric env
-####steps
+### fabric env
+#### steps
 - create a fabric env, then modify the default profile's maven repo.
 
 you need to add related repo which contains drools artifacts into the profile's repository.[1] Or if you would like to use the offline repo, you can download from [2].
@@ -191,48 +191,3 @@ fabric:profile-edit --bundle file:///home/wuxiaohui/cases/01833199/cosmoplas-com
 container-create-child root child
 container-add-profile child cosprofile
 ```
-
-
-
-
-
-Pls note even there are logs:`Stopped KahaDB`
-Messages can be sent to the Broker. So the broker is not crashed. It is still working. Looks like the warning message is harmless.
-==========5.11.0.redhat-621090===============
-```
-
-11:30:37,813 | INFO  | l Console Thread | KahaDBStore                      | 185 - org.apache.activemq.activemq-osgi - 5.11.0.redhat-621090 | Stopping async queue tasks
-11:30:37,814 | INFO  | l Console Thread | KahaDBStore                      | 185 - org.apache.activemq.activemq-osgi - 5.11.0.redhat-621090 | Stopping async topic tasks
-11:30:37,814 | INFO  | l Console Thread | KahaDBStore                      | 185 - org.apache.activemq.activemq-osgi - 5.11.0.redhat-621090 | Stopped KahaDB
-11:30:47,788 | WARN  | r[amq] Scheduler | Topic                            | 185 - org.apache.activemq.activemq-osgi - 5.11.0.redhat-621090 | Failed to browse Topic: /topic/com/lynden/crossdock/JMS-Tester_Topic5
-java.lang.IllegalStateException: PageFile is not loaded
-	at org.apache.activemq.store.kahadb.disk.page.PageFile.assertLoaded(PageFile.java:811)[185:org.apache.activemq.activemq-osgi:5.11.0.redhat-621090]
-	at org.apache.activemq.store.kahadb.disk.page.PageFile.tx(PageFile.java:304)[185:org.apache.activemq.activemq-osgi:5.11.0.redhat-621090]
-	at org.apache.activemq.store.kahadb.KahaDBStore$KahaDBMessageStore.recover(KahaDBStore.java:557)[185:org.apache.activemq.activemq-osgi:5.11.0.redhat-621090]
-	at org.apache.activemq.store.ProxyTopicMessageStore.recover(ProxyTopicMessageStore.java:62)[185:org.apache.activemq.activemq-osgi:5.11.0.redhat-621090]
-	at org.apache.activemq.store.ProxyTopicMessageStore.recover(ProxyTopicMessageStore.java:62)[185:org.apache.activemq.activemq-osgi:5.11.0.redhat-621090]
-	at org.apache.activemq.broker.region.Topic.doBrowse(Topic.java:595)[185:org.apache.activemq.activemq-osgi:5.11.0.redhat-621090]
-	at org.apache.activemq.broker.region.Topic.access$100(Topic.java:66)[185:org.apache.activemq.activemq-osgi:5.11.0.redhat-621090]
-	at org.apache.activemq.broker.region.Topic$6.run(Topic.java:734)[185:org.apache.activemq.activemq-osgi:5.11.0.redhat-621090]
-	at org.apache.activemq.thread.SchedulerTimerTask.run(SchedulerTimerTask.java:33)[185:org.apache.activemq.activemq-osgi:5.11.0.redhat-621090]
-	at java.util.TimerThread.mainLoop(Timer.java:555)[:1.8.0_92]
-	at java.util.TimerThread.run(Timer.java:505)[:1.8.0_92]
-```
-==========5.11.0.redhat-621090===============
-
-but on version 5.11.0.redhat-630187,  the exception like below:
-
-============5.11.0.redhat-630187===============
-```
-14:21:05,418 | INFO  | producer-1       | ProducerThread                   | 219 - org.apache.activemq.activemq-osgi - 5.11.0.redhat-630187 | producer-1 Started to calculate elapsed time ...n  | 
-14:21:05,429 | INFO  | producer-1       | ProducerThread                   | 219 - org.apache.activemq.activemq-osgi - 5.11.0.redhat-630187 | producer-1 Produced: 100 messages
-14:21:05,429 | INFO  | producer-1       | ProducerThread                   | 219 - org.apache.activemq.activemq-osgi - 5.11.0.redhat-630187 | producer-1 Elapsed time in second : 0 s
-14:21:05,429 | INFO  | producer-1       | ProducerThread                   | 219 - org.apache.activemq.activemq-osgi - 5.11.0.redhat-630187 | producer-1 Elapsed time in milli second : 11 milli seconds
-14:21:20,505 | INFO  | l Console Thread | KahaDBStore                      | 219 - org.apache.activemq.activemq-osgi - 5.11.0.redhat-630187 | Stopping async queue tasks
-14:21:20,505 | INFO  | l Console Thread | KahaDBStore                      | 219 - org.apache.activemq.activemq-osgi - 5.11.0.redhat-630187 | Stopping async topic tasks
-14:21:20,505 | INFO  | l Console Thread | KahaDBStore                      | 219 - org.apache.activemq.activemq-osgi - 5.11.0.redhat-630187 | Stopped KahaDB
-```
-============5.11.0.redhat-630187===============
-
-
-
