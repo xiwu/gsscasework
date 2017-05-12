@@ -10,12 +10,15 @@
 `mvn:org.apache.servicemix.camel/features/6.0.0.redhat-024/xml/features`
 
 ### feature.xml
+
+```
 <?xml version='1.0' encoding='UTF-8'?>
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0" name="testlocalrepo-6.3.0.redhat-187">
     <feature name="testlocalrepo" version="1.0">
         <bundle>mvn:org.jboss.quickstarts.fuse/beginner-camel-cbr/6.3.0.redhat-187</bundle>
     </feature>
 </features>
+```
 
 ### how to generate the feature.xml?
 below plugin will generate the feature.xml 
