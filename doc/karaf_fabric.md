@@ -6,6 +6,7 @@
 
 ### features related format
 `feature:repo-add mvn:<groupId>/<artifactId>/<version>/xml/features`
+
 `mvn:org.apache.servicemix.camel/features/6.0.0.redhat-024/xml/features`
 
 ### feature.xml
@@ -46,7 +47,9 @@ then put the file into the directory:
 
 `/home/wuxiaohui/.m2/repository/org/jboss/quickstarts/fuse/beginner-camel-cbr/6.3.0.redhat-187`
 `ls`
+
 `beginner-camel-cbr-6.3.0.redhat-187-features.xml`
+
 `beginner-camel-cbr-6.3.0.redhat-187.jar`
 
 `features:addurl mvn:org.jboss.quickstarts.fuse/beginner-camel-cbr/6.3.0.redhat-187/xml/features`
