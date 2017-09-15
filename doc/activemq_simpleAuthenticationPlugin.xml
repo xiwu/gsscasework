@@ -1,0 +1,41 @@
+<!-- 01055867  https://access.redhat.com/solutions/758073 -->
+<simpleAuthenticationPlugin anonymousAccessAllowed="true">
+<users>
+<authenticationUser username="TEDevUser" password="TEDevPwd" groups="TEDevUser"/>
+<!--  misc  -->
+<authenticationUser username="admin" password="admin" groups="admins"/>
+<authenticationUser username="fusemq" password="letmein" groups="admins"/>
+<authenticationUser username="user" password="password" groups="users"/>
+<authenticationUser username="user1" password="password1" groups="g1"/>
+<authenticationUser username="user2" password="password2" groups="g2"/>
+</users>
+</simpleAuthenticationPlugin>
+<authorizationPlugin>
+<map>
+<authorizationMap>
+<authorizationEntries>
+<authorizationEntry topic="Dev.Monitor.Event" write="TEDevUser"/>
+<!--  Trade Enrichment  -->
+<authorizationEntry queue="Dev.Trade.Unenriched.TradeEnricher" read="TEDevUser,anonymous"/>
+<authorizationEntry topic="Dev.Trade.Approved.Enriched" write="TEDevUser,anonymous"/>
+<authorizationEntry topic="Dev.Trade.Confirmed.Enriched" write="TEDevUser,anonymous"/>
+<authorizationEntry topic="Dev.Trade.Deleted.Enriched" write="TEDevUser,anonymous"/>
+<authorizationEntry topic="Dev.Trade.Executed.Enriched" write="TEDevUser,anonymous"/>
+<authorizationEntry topic="Dev.Trade.Validated.Enriched" write="TEDevUser,anonymous"/>
+<!--  Trade Enrichment Comparison tests -->
+<authorizationEntry topic="Dev.Trade.Executed.Unenriched" write="TEDevUser,anonymous"/>
+<authorizationEntry topic="Dev.Enrichment.Trade.All.EnrichedReplyTo" read="TEDevUser,anonymous"/>
+<authorizationEntry topic="Dev.Enrichment.Trade.All.EnrichedReplyTo" write="TEDevUser,anonymous"/>
+<authorizationEntry topic="Dev.Enrichment.Trade.All.EnrichedErrorTo" read="TEDevUser,anonymous"/>
+<authorizationEntry topic="Dev.Enrichment.Trade.All.EnrichedErrorTo" write="TEDevUser,anonymous"/>
+<!--  misc  -->
+<authorizationEntry queue=">" read="admins,users,anonymous" write="admins,users,anonymous" admin="admins,anonymous"/>
+<authorizationEntry topic=">" read="admins,users" write="admins,users" admin="admins"/>
+<authorizationEntry topic="ActiveMQ.Advisory.>" read="admins,users,g1,g2,ConnectingUsers,anonymous" write="admins,users,g1,g2,ConnectingUsers,anonymous" admin="admins,users,g1,g2,ConnectingUsers,anonymous"/>
+</authorizationEntries>
+<tempDestinationAuthorizationEntry>
+<tempDestinationAuthorizationEntry read="admins" write="admins" admin="admins"/>
+</tempDestinationAuthorizationEntry>
+</authorizationMap>
+</map>
+</authorizationPlugin>
