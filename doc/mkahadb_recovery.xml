@@ -1,0 +1,24 @@
+        <persistenceAdapter>
+            <mKahaDB directory="${activemq.data}/kahadb">
+                <filteredPersistenceAdapters>
+                    <filteredKahaDB queue=">">
+                        <persistenceAdapter>
+                            <kahaDB enableJournalDiskSyncs="true"
+                                preallocationStrategy="zeros" concurrentStoreAndDispatchQueues="false"  checkForCorruptJournalFiles="true" ignoreMissingJournalfiles="true"/>
+                        </persistenceAdapter>
+                    </filteredKahaDB>
+                    <filteredKahaDB topic=">">
+                        <persistenceAdapter>
+                            <kahaDB enableJournalDiskSyncs="true"
+                                preallocationStrategy="zeros" concurrentStoreAndDispatchQueues="false"  checkForCorruptJournalFiles="true" ignoreMissingJournalfiles="true"/>
+                        </persistenceAdapter>
+                    </filteredKahaDB>
+                    <filteredKahaDB>
+                        <persistenceAdapter>
+                            <kahaDB enableJournalDiskSyncs="true"
+                                preallocationStrategy="zeros" concurrentStoreAndDispatchQueues="false"  checkForCorruptJournalFiles="true" ignoreMissingJournalfiles="true"/>
+                        </persistenceAdapter>
+                    </filteredKahaDB>
+                </filteredPersistenceAdapters>
+            </mKahaDB>
+        </persistenceAdapter>
