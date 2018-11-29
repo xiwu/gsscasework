@@ -74,7 +74,7 @@ Connection: Keep-Alive
 比如如下的<camelcxf:cxfEndpoint> 该endpoint是使用camel route的实现提供了一个webservice的endpoint，访问地址是：
 http://localhost:8181/cxf/camel-example-cxf-blueprint/webservices/incident
 可以通过访问wsdl url来得知该service的详细信息。
-
+```
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0"
@@ -111,3 +111,15 @@ http://localhost:8181/cxf/camel-example-cxf-blueprint/webservices/incident
   </camelContext>
 
 </blueprint>
+```
+
+the route defined the service through camel cxf component.
+```
+        from("cxf:bean:reportIncident")
+            .convertBodyTo(InputReportIncident.class)
+            .wireTap("file://target/inbox/?fileName=request-${date:now:yyyy-MM-dd-HHmmssSSS}")
+            .choice().when(simple("${body.givenName} == 'Claus'"))
+                .transform(constant(ok))
+            .otherwise()
+                .transform(constant(accepted));
+```
