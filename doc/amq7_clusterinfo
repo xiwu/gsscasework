@@ -32,8 +32,38 @@ in server2.log,
 2019-01-15 15:27:04,630 INFO  [org.apache.activemq.artemis.core.server] AMQ221031: backup announced
 2019-01-15 15:37:41,996 INFO  [org.apache.activemq.artemis.core.server] AMQ221066: Initiating quorum vote: LiveFailoverQuorumVote
 2019-01-15 15:37:41,998 INFO  [org.apache.activemq.artemis.core.server] AMQ221067: Waiting 30 seconds for quorum vote results.
-2019-01-15 15:37:42,028 INFO  [org.apache.activemq.artemis.core.server] AMQ221060: Sending quorum vote request to localhost/127.0.0.1:61816: ServerConnectVote [nodeId=7864fe9f-1891-11e9-bf54-54ee755c104e, vote=false]
+2019-01-15 15:37:42,028 INFO  [org.apache.activemq.artemis.core.server] AMQ221060: Sending quorum vote request to localhost/127.0.0.1:61816: ServerConnectVote [nodeId=7864fe9f-1891-11e9-bf54-54ee755c104e, vote=false] 这是该server2自己的nodeId
 2019-01-15 15:37:42,041 INFO  [org.apache.activemq.artemis.core.server] AMQ221061: Received quorum vote response from localhost/127.0.0.1:61816: ServerConnectVote [nodeId=7864fe9f-1891-11e9-bf54-54ee755c104e, vote=true]
 2019-01-15 15:37:42,042 INFO  [org.apache.activemq.artemis.core.server] AMQ221068: Received all quorum votes.
 2019-01-15 15:37:42,053 INFO  [org.apache.activemq.artemis.core.server] AMQ221071: Failing over based on quorum vote results.
 2019-01-15 15:37:42,076 INFO  [org.apache.activemq.artemis.core.server] AMQ221037: ActiveMQServerImpl::serverUUID=7864fe9f-1891-11e9-bf54-54ee755c104e to become 'live'
+
+
+
+
+// 当A重新启动后，server2变为slave
+server2.log
+2019-01-15 15:57:48,450 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile /home/wuxiaohui/apps/amq-broker-7.2.0/bin/nb2/data/bindings/activemq-bindings-6.bindings (size=1,048,576) to replica.
+2019-01-15 15:57:48,856 INFO  [org.apache.activemq.artemis.core.server] AMQ221029: stopped bridge $.artemis.internal.sf.static-cluster.064404ea-1897-11e9-98ea-54ee755c104e
+2019-01-15 15:57:48,914 INFO  [org.apache.activemq.artemis.core.server] AMQ221002: Apache ActiveMQ Artemis Message Broker version 2.6.1.amq-720004-redhat-1 [7864fe9f-1891-11e9-bf54-54ee755c104e] stopped, uptime 30 minutes
+2019-01-15 15:57:48,914 INFO  [org.apache.activemq.artemis.core.server] AMQ221039: Restarting as Replicating backup server after live restart
+2019-01-15 15:57:48,914 INFO  [org.apache.activemq.artemis.core.server] AMQ221000: backup Message Broker is starting with configuration Broker Configuration (clustered=true,journalDirectory=data/journal,bindingsDirectory=data/bindings,largeMessagesDirectory=data/large-messages,pagingDirectory=data/paging)
+2019-01-15 15:57:48,915 INFO  [org.apache.activemq.artemis.core.server] AMQ222162: Moving data directory /home/wuxiaohui/apps/amq-broker-7.2.0/bin/nb2/data/bindings to /home/wuxiaohui/apps/amq-broker-7.2.0/bin/nb2/data/bindings/oldreplica.2
+2019-01-15 15:57:48,916 INFO  [org.apache.activemq.artemis.core.server] AMQ221055: There were too many old replicated folders upon startup, removing /home/wuxiaohui/apps/amq-broker-7.2.0/bin/nb2/data/journal/oldreplica.1
+2019-01-15 15:57:48,958 INFO  [org.apache.activemq.artemis.core.server] AMQ221109: Apache ActiveMQ Artemis Backup Server version 2.6.1.amq-720004-redhat-1 [null] started, waiting live to fail before it gets active
+2019-01-15 15:57:51,876 INFO  [org.apache.activemq.artemis.core.server] AMQ221024: Backup server ActiveMQServerImpl::serverUUID=7864fe9f-1891-11e9-bf54-54ee755c104e is synchronized with live-server.
+2019-01-15 15:57:51,883 INFO  [org.apache.activemq.artemis.core.server] AMQ221031: backup announced
+
+
+
+
+
+
+
+
+//
+
+2019-01-15 15:27:04,630 INFO  [org.apache.activemq.artemis.core.server] AMQ221031: backup announced
+
+
+ 2019-01-15 15:37:42,076 INFO  [org.apache.activemq.artemis.core.server] AMQ221037: ActiveMQServerImpl::serverUUID=7864fe9f-1891-11e9-bf54-54ee755c104e to become 'live'
