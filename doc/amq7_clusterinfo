@@ -1,0 +1,39 @@
+when I have 1 and 2 servers as master/slave cluster mode, 
+topology on Topology@6634f9d7[owner=ClusterConnectionImpl@1478145298[nodeUUID=7864fe9f-1891-11e9-bf54-54ee755c104e, connector=TransportConfiguration(name=brokernb2-connector, factory=org-apache-activemq-artemis-core-remoting-impl-netty-NettyConnectorFactory) ?port=61716&host=localhost, address=, server=ActiveMQServerImpl::serverUUID=7864fe9f-1891-11e9-bf54-54ee755c104e]]:
+	7864fe9f-1891-11e9-bf54-54ee755c104e =&gt; TopologyMember[id = 7864fe9f-1891-11e9-bf54-54ee755c104e, connector=Pair[a=TransportConfiguration(name=brokernb1-connector, factory=org-apache-activemq-artemis-core-remoting-impl-netty-NettyConnectorFactory) ?port=61616&host=localhost, b=TransportConfiguration(name=brokernb2-connector, factory=org-apache-activemq-artemis-core-remoting-impl-netty-NettyConnectorFactory) ?port=61716&host=localhost], backupGroupName=cluster1, scaleDownGroupName=null]
+	nodes=2	members=1
+
+
+//after 3 joined
+
+
+server1.log
+2019-01-15 15:27:39,612 INFO  [org.apache.activemq.artemis.core.server] AMQ221027: Bridge ClusterConnectionBridge@6505d7bd [name=$.artemis.internal.sf.static-cluster.064404ea-1897-11e9-98ea-54ee755c104e, queue=QueueImpl[name=$.artemis.internal.sf.static-cluster.064404ea-1897-11e9-98ea-54ee755c104e, postOffice=PostOfficeImpl [server=ActiveMQServerImpl::serverUUID=7864fe9f-1891-11e9-bf54-54ee755c104e], temp=false]@413f263d targetConnector=ServerLocatorImpl (identity=(Cluster-connection-bridge::ClusterConnectionBridge@6505d7bd [name=$.artemis.internal.sf.static-cluster.064404ea-1897-11e9-98ea-54ee755c104e, queue=QueueImpl[name=$.artemis.internal.sf.static-cluster.064404ea-1897-11e9-98ea-54ee755c104e, postOffice=PostOfficeImpl [server=ActiveMQServerImpl::serverUUID=7864fe9f-1891-11e9-bf54-54ee755c104e], temp=false]@413f263d targetConnector=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=brokernb3-connector, factory=org-apache-activemq-artemis-core-remoting-impl-netty-NettyConnectorFactory) ?port=61816&host=localhost], discoveryGroupConfiguration=null]]::ClusterConnectionImpl@215078753[nodeUUID=7864fe9f-1891-11e9-bf54-54ee755c104e, connector=TransportConfiguration(name=brokernb1-connector, factory=org-apache-activemq-artemis-core-remoting-impl-netty-NettyConnectorFactory) ?port=61616&host=localhost, address=, server=ActiveMQServerImpl::serverUUID=7864fe9f-1891-11e9-bf54-54ee755c104e])) [initialConnectors=[TransportConfiguration(name=brokernb3-connector, factory=org-apache-activemq-artemis-core-remoting-impl-netty-NettyConnectorFactory) ?port=61816&host=localhost], discoveryGroupConfiguration=null]] is connected
+
+server3.log
+2019-01-15 15:27:39,620 INFO  [org.apache.activemq.artemis.core.server] AMQ221027: Bridge ClusterConnectionBridge@2e13d79d [name=$.artemis.internal.sf.static-cluster.7864fe9f-1891-11e9-bf54-54ee755c104e, queue=QueueImpl[name=$.artemis.internal.sf.static-cluster.7864fe9f-1891-11e9-bf54-54ee755c104e, postOffice=PostOfficeImpl [server=ActiveMQServerImpl::serverUUID=064404ea-1897-11e9-98ea-54ee755c104e], temp=false]@71b8a5f3 targetConnector=ServerLocatorImpl (identity=(Cluster-connection-bridge::ClusterConnectionBridge@2e13d79d [name=$.artemis.internal.sf.static-cluster.7864fe9f-1891-11e9-bf54-54ee755c104e, queue=QueueImpl[name=$.artemis.internal.sf.static-cluster.7864fe9f-1891-11e9-bf54-54ee755c104e, postOffice=PostOfficeImpl [server=ActiveMQServerImpl::serverUUID=064404ea-1897-11e9-98ea-54ee755c104e], temp=false]@71b8a5f3 targetConnector=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=brokernb1-connector, factory=org-apache-activemq-artemis-core-remoting-impl-netty-NettyConnectorFactory) ?port=61616&host=localhost], discoveryGroupConfiguration=null]]::ClusterConnectionImpl@283039401[nodeUUID=064404ea-1897-11e9-98ea-54ee755c104e, connector=TransportConfiguration(name=brokernb3-connector, factory=org-apache-activemq-artemis-core-remoting-impl-netty-NettyConnectorFactory) ?port=61816&host=localhost, address=, server=ActiveMQServerImpl::serverUUID=064404ea-1897-11e9-98ea-54ee755c104e])) [initialConnectors=[TransportConfiguration(name=brokernb1-connector, factory=org-apache-activemq-artemis-core-remoting-impl-netty-NettyConnectorFactory) ?port=61616&host=localhost], discoveryGroupConfiguration=null]] is connected
+
+2019-01-15 15:35:52,099 INFO  [org.apache.activemq.artemis.core.server] AMQ221001: Apache ActiveMQ Artemis Message Broker version 2.6.1.amq-720004-redhat-1 [0.0.0.0, nodeID=064404ea-1897-11e9-98ea-54ee755c104e] 
+2019-01-15 15:37:42,013 INFO  [org.apache.activemq.artemis.core.server] AMQ221029: stopped bridge $.artemis.internal.sf.static-cluster.7864fe9f-1891-11e9-bf54-54ee755c104e
+2019-01-15 15:37:42,033 INFO  [org.apache.activemq.artemis.core.server] AMQ221062: Received quorum vote request: ServerConnectVote [nodeId=7864fe9f-1891-11e9-bf54-54ee755c104e, vote=false]
+2019-01-15 15:37:42,033 INFO  [org.apache.activemq.artemis.core.server] AMQ221065: Node 7864fe9f-1891-11e9-bf54-54ee755c104e not found in cluster topology
+2019-01-15 15:37:42,033 INFO  [org.apache.activemq.artemis.core.server] AMQ221063: Sending quorum vote response: ServerConnectVote [nodeId=7864fe9f-1891-11e9-bf54-54ee755c104e, vote=true]
+
+
+
+//shutdown server1
+
+in server1.log,
+^C2019-01-15 15:37:42,001 INFO  [org.apache.activemq.artemis.core.server] AMQ221029: stopped bridge $.artemis.internal.sf.static-cluster.064404ea-1897-11e9-98ea-54ee755c104e
+2019-01-15 15:37:42,152 INFO  [org.apache.activemq.artemis.core.server] AMQ221002: Apache ActiveMQ Artemis Message Broker version 2.6.1.amq-720004-redhat-1 [7864fe9f-1891-11e9-bf54-54ee755c104e] stopped, uptime 10 minutes
+
+
+in server2.log,
+2019-01-15 15:27:04,630 INFO  [org.apache.activemq.artemis.core.server] AMQ221031: backup announced
+2019-01-15 15:37:41,996 INFO  [org.apache.activemq.artemis.core.server] AMQ221066: Initiating quorum vote: LiveFailoverQuorumVote
+2019-01-15 15:37:41,998 INFO  [org.apache.activemq.artemis.core.server] AMQ221067: Waiting 30 seconds for quorum vote results.
+2019-01-15 15:37:42,028 INFO  [org.apache.activemq.artemis.core.server] AMQ221060: Sending quorum vote request to localhost/127.0.0.1:61816: ServerConnectVote [nodeId=7864fe9f-1891-11e9-bf54-54ee755c104e, vote=false]
+2019-01-15 15:37:42,041 INFO  [org.apache.activemq.artemis.core.server] AMQ221061: Received quorum vote response from localhost/127.0.0.1:61816: ServerConnectVote [nodeId=7864fe9f-1891-11e9-bf54-54ee755c104e, vote=true]
+2019-01-15 15:37:42,042 INFO  [org.apache.activemq.artemis.core.server] AMQ221068: Received all quorum votes.
+2019-01-15 15:37:42,053 INFO  [org.apache.activemq.artemis.core.server] AMQ221071: Failing over based on quorum vote results.
+2019-01-15 15:37:42,076 INFO  [org.apache.activemq.artemis.core.server] AMQ221037: ActiveMQServerImpl::serverUUID=7864fe9f-1891-11e9-bf54-54ee755c104e to become 'live'
